@@ -270,6 +270,8 @@ img.addEventListener("wheel", (e) => {
   img.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
 });
 
+<!-- ONLY your download function is upgraded -->
+
 async function downloadFlyer() {
 
   const name = document.getElementById("name").value;
@@ -282,7 +284,7 @@ async function downloadFlyer() {
   }
 
   try {
-    // 1. SEND TO EMAIL FIRST (FormSubmit)
+    // EMAIL SEND (unchanged)
     await fetch("https://formsubmit.co/ajax/christophercrystal027@gmail.com", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -297,26 +299,38 @@ async function downloadFlyer() {
     console.log("Email failed but continuing download");
   }
 
-  // 2. WAIT A SHORT MOMENT (VERY IMPORTANT)
   await new Promise(resolve => setTimeout(resolve, 500));
 
-  // 3. DOWNLOAD FLYER
-  html2canvas(flyer, {
-    scale: 2,
-    useCORS: true
-  }).then(canvas => {
-
-    canvas.toBlob(blob => {
-      const link = document.createElement("a");
-      link.download = "flyer.png";
-      link.href = URL.createObjectURL(blob);
-      link.click();
-      URL.revokeObjectURL(link.href);
-    }, "image/png");
-
+  // 🔥 HD CANVAS FIX STARTS HERE
+  const canvas = await html2canvas(flyer, {
+    scale: 4,                // 🔥 main sharpness boost
+    useCORS: true,
+    backgroundColor: null,
+    logging: false,
+    windowWidth: flyer.scrollWidth,
+    windowHeight: flyer.scrollHeight
   });
 
-}showSuccess()
+  // DOWNLOAD (unchanged but cleaner)
+  canvas.toBlob(blob => {
+    const link = document.createElement("a");
+    link.download = "flyer.png";
+    link.href = URL.createObjectURL(blob);
+    link.click();
+    URL.revokeObjectURL(link.href);
+  }, "image/png");
+
+  // SUCCESS (fixed position — now runs AFTER everything)
+  showSuccess();
+}
+
+function showSuccess() {
+  document.getElementById("successScreen").style.display = "flex";
+}
+
+function closeSuccess() {
+  document.getElementById("successScreen").style.display = "none";
+}
 function showSuccess() {
   document.getElementById("successScreen").style.display = "flex";
 }
