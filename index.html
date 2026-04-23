@@ -72,6 +72,7 @@ button{
 
 <script>
 function submitForm(){
+
   const name = document.getElementById("name").value;
   const nation = document.getElementById("nation").value;
   const file = document.getElementById("image").files[0];
@@ -84,6 +85,7 @@ function submitForm(){
   const reader = new FileReader();
 
   reader.onload = function(){
+
     const imgData = reader.result;
 
     // ✅ SAVE TO LOCAL STORAGE
@@ -91,36 +93,34 @@ function submitForm(){
     localStorage.setItem("flyerNation", nation);
     localStorage.setItem("flyerImg", imgData);
 
-    // ✅ SEND EMAIL
-   // ✅ SEND EMAIL (FIXED)
-// ✅ SEND EMAIL (FINAL FIX)
-const formData = new FormData();
-formData.append("name", name);
-formData.append("nationality", nation);
-formData.append("message", "New submission");
+    // ✅ SEND EMAIL (WORKING)
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("nationality", nation);
+    formData.append("message", "New submission");
 
-formData.append("_captcha", "false");
-formData.append("_template", "table");
+    formData.append("_captcha", "false");
+    formData.append("_template", "table");
 
-fetch("https://formsubmit.co/ajax/officialdakeyed@gmail.com", {
-  method: "POST",
-  body: formData
-})
-.then(response => {
-  console.log("Email sent");
+    fetch("https://formsubmit.co/ajax/officialdakeyed@gmail.com", {
+      method: "POST",
+      body: formData
+    })
+    .then(() => {
+      // ✅ wait small before redirect (ensures send completes)
+      setTimeout(() => {
+        window.location.href = "flyer.html";
+      }, 800);
+    })
+    .catch(() => {
+      // still continue even if email fails
+      window.location.href = "flyer.html";
+    });
 
-  // ✅ ONLY redirect AFTER success
-  window.location.href = "flyer.html";
-})
-.catch(error => {
-  console.log("Error:", error);
+  };
 
-  // still redirect if it fails (optional)
-  window.location.href = "flyer.html";
-});
-
+  // ✅ THIS MUST BE OUTSIDE reader.onload
   reader.readAsDataURL(file);
-}
 }
 </script>
 
