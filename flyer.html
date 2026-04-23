@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creative Vanguard Challenge</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800;900&display=swap" rel="stylesheet">
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f4f7fa;
+  min-height: 100vh;
+  padding: 10px;
+  font-family: 'Bricolage Grotesque', sans-serif;
+}
+
+/* WRAPPER */
+.flyer-wrapper {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  justify-content: center;
+}
+
+/* MAIN */
+.flyer {
+  position: relative;
+  width: 900px;
+  height: 900px;
+  background: linear-gradient(135deg, #eaf6fb, #ffffff);
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 40px;
+}
+
+/* TITLE */
+.title {
+  color: #2daae1;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.title h1 {
+  font-size: 60px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #555;
+  margin-top: 5px;
+}
+
+/* REG */
+.reg {
+  position: absolute;
+  top: 60px;
+  right: 60px;
+  text-align: right;
+}
+
+.flags {
+  height: 18px;
+  margin-bottom: 8px;
+  background: repeating-linear-gradient(
+    to right,
+    red 0 10px,
+    yellow 10px 20px,
+    green 20px 30px
+  );
+}
+
+/* BIG TEXT */
+.big-text {
+  margin-top: 80px;
+  color: #234b5c;
+}
+
+.big-text h2 {
+  font-size: 70px;
+  font-weight: 800;
+}
+
+.big-text span {
+  display: block;
+  font-size: 50px;
+  font-weight: 600;
+}
+
+/* PRIZES */
+.prizes {
+  margin-top: 20px;
+}
+
+.prize {
+  display: inline-block;
+  background: linear-gradient(to right, #1b86b3, #27d1c3);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.prize span {
+  margin-left: 10px;
+  font-size: 20px;
+  color: #123847;
+}
+
+/* GAIN */
+.gain {
+  margin-top: 40px;
+  color: #4a6b7a;
+  font-size: 15px;
+}
+
+/* OPENED */
+.opened {
+  margin-top: 40px;
+  background: linear-gradient(to right, #2fa8c6, #7dd2d8);
+  padding: 20px;
+  border-radius: 20px;
+  color: white;
+  width: 350px;
+}
+
+/* RIGHT */
+.right {
+  position: absolute;
+  right: 40px;
+  top: 200px;
+  text-align: center;
+}
+
+/* IMAGE */
+.circle {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 8px solid #5cd1df;
+  overflow: hidden;
+}
+
+.circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* NAME */
+.name-bar {
+  width: 300px;
+  height: 45px;
+  background: #123847;
+  border-radius: 30px;
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+}
+
+/* NATION */
+.nation-bar {
+  width: 200px;
+  height: 35px;
+  background: #1f86b3;
+  border-radius: 30px;
+  margin: 15px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+/* DATE */
+.date {
+  position: absolute;
+  bottom: 100px;
+  right: 60px;
+  color: #1f5f6f;
+}
+
+.date h1 {
+  font-size: 50px;
+}
+
+.date span {
+  font-size: 25px;
+}
+
+/* FOOTER */
+.footer {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  letter-spacing: 4px;
+  text-align: center;
+  width: 100%;
+}
+
+/* DOWNLOAD BUTTON */
+.download-btn {
+  margin-top: 20px;
+  padding: 12px 25px;
+  background: #2daae1;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+
+  .flyer {
+    width: 360px;
+    height: 450px;
+    padding: 16px;
+  }
+
+  .title h1 {
+    font-size: 24px;
+  }
+
+  .subtitle {
+    font-size: 8px;
+  }
+
+  .big-text {
+    margin-top: 30px;
+  }
+
+  .big-text h2 {
+    font-size: 28px;
+  }
+
+  .big-text span {
+    font-size: 20px;
+  }
+
+  .prize {
+    padding: 5px 10px;
+    font-size:7px;
+  }
+
+  .prize span {
+    font-size: 10px;
+  }
+
+  .gain {
+    font-size: 9px;
+    margin-top: 20px;
+  }
+
+  .opened {
+    width: 160px;
+    padding: 10px;
+    font-size: 10px;
+    margin-top: 20px;
+    border-radius: 9px;
+  }
+
+  .right {
+    top: 120px;
+    right: 15px;
+  }
+
+  .circle {
+    width: 120px;
+    height: 120px;
+    border-width: 4px;
+  }
+
+  .name-bar {
+    width: 120px;
+    height: 20px;
+    margin-top: 10px;
+    font-size: 10px;
+  }
+
+  .nation-bar {
+    width: 80px;
+    height: 15px;
+    margin-top: 6px;
+    font-size: 10px;
+  }
+
+  .reg {
+    top: 20px;
+    right: 20px;
+    font-size: 9px;
+  }
+
+  .date {
+    bottom: 40px;
+    right: 20px;
+  }
+
+  .date h1 {
+    font-size: 22px;
+  }
+
+  .date span {
+    font-size: 12px;
+  }
+
+  .footer {
+    font-size: 8px;
+    letter-spacing: 2px;
+    bottom: 10px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="flyer-wrapper">
+  <div class="flyer" id="flyer">
+
+    <!-- LEFT -->
+    <div class="title">
+      <h1>Creative<br>Vanguard<br>Challenge 1.0</h1>
+      <div class="subtitle">A Graphic Design competition</div>
+    </div>
+
+    <div class="big-text">
+      <h2>I will be</h2>
+      <span>Competing</span>
+    </div>
+
+    <div class="prizes">
+      <div class="prize">1st Place <span>N50K</span></div>
+      <div class="prize">2nd Place <span>N25K</span></div>
+    </div>
+
+    <div class="gain">
+      <strong>What you'll Gain:</strong>
+      <p>- Cash prizes for top performers</p>
+      <p>- Recognition & Certificates</p>
+      <p>- Portfolio development</p>
+      <p>- Real-life design experience</p>
+    </div>
+
+    <div class="opened">
+      <p><strong>Opened to:</strong></p>
+      <p>- Both Phone & PC Designers</p>
+      <p>- All design software users</p>
+      <p>- Growth minded designers</p>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="right">
+      <div class="circle">
+        <img id="userImg">
+      </div>
+
+      <div class="name-bar" id="userName">Your Name</div>
+      <div class="nation-bar" id="userNation">Nationality</div>
+    </div>
+
+    <!-- TOP RIGHT -->
+    <div class="reg">
+      <div class="flags"></div>
+      <p>Reg fee: 2k naira</p>
+    </div>
+
+    <!-- DATE -->
+    <div class="date">
+      <h1>18TH–31ST</h1>
+      <span>May 2026</span>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      Dm +234 9033232795 on Whatsapp to register
+    </div>
+
+  </div>
+</div>
+
+<button class="download-btn" onclick="downloadFlyer()">Download Flyer</button>
+<a href="index.html"><button class="download-btn" > < Back Home </button></a>
+
+<script>
+// LOAD DATA
+const name = localStorage.getItem("flyerName");
+const nation = localStorage.getItem("flyerNation");
+const img = localStorage.getItem("flyerImg");
+
+if(name) document.getElementById("userName").innerText = name;
+if(nation) document.getElementById("userNation").innerText = nation;
+if(img) document.getElementById("userImg").src = img;
+
+// DOWNLOAD HD
+function downloadFlyer(){
+  html2canvas(document.getElementById("flyer"), {
+    scale: 4,
+    useCORS:true
+  }).then(canvas=>{
+    const link = document.createElement("a");
+    link.download = "flyer.png";
+    link.href = canvas.toDataURL("image/png",1.0);
+    link.click();
+  });
+}
+</script>
+
+</body>
+</html>
