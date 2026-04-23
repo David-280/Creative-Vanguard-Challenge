@@ -3,381 +3,119 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CREATIVE VANGUARD CHALLENGE</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800;900&display=swap" rel="stylesheet">
+
+<title>Join Challenge</title>
+
 <style>
-.circle img {
-  cursor: grab;
-  transform-origin: center;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Bricolage Grotesque', sans-serif;
 }
 
-/* draggable state */
-.dragging {
-  cursor: grabbing;
+body{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#eaf6fb,#ffffff);
+}
+
+.form-box{
+  width:100%;
+  max-width:400px;
+  background:white;
+  padding:25px;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+h2{
+  margin-bottom:15px;
+}
+
+input{
+  width:100%;
+  padding:12px;
+  margin-bottom:12px;
+  border-radius:10px;
+  border:1px solid #ccc;
+}
+
+button{
+  width:100%;
+  padding:12px;
+  border:none;
+  background:#2daae1;
+  color:white;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold;
 }
 </style>
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
-}
-
-body {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #e6f4fb, #ffffff);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-/* Layout */
-.container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  width: 100%;
-  max-width: 1100px;
-}
-
-/* FORM */
-.form {
-  background: rgba(255,255,255,0.7);
-  backdrop-filter: blur(10px);
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.form h2 {
-  margin-bottom: 15px;
-  color: #333;
-}
-
-.form input {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 12px;
-  border-radius: 12px;
-  border: 1px solid #ddd;
-  outline: none;
-}
-
-.form input:focus {
-  border-color: #00a8e8;
-}
-
-button {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 12px;
-  background: #00a8e8;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-/* FLYER PREVIEW */
-.flyer {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1/1;
-  background: url('flyer.jpg') no-repeat center/cover;
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.circle {
-  position: absolute;
-  top: 23.6%;
-  right: 4.4%;
-  width: 242px;
-  height: 242px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 5px solid #4fc3f7;
-  background: #ccc;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.circle img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-/* Name */
-.name {
-  position: absolute;
-  bottom: 23.2%;
-  right: 5%;
-  width: 250px;
-  background: #1e3a5f;
-  color: white;
-  text-align: center;
-  padding-top:7px;
-  border-radius: 30px;
-  font-weight: bold;
-  height: 40px;
-}
-
-/* Nationality */
-.nationality {
-  position: absolute;
-  bottom: 15.5%;
-  right: 12%;
-  width: 170px;
-  background: #00a8e8;
-  color: white;
-  text-align: center;
-  padding-top: 5px;
-  border-radius: 30px;
-  height: 35px;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .container {
-    grid-template-columns: 1fr;
-  }
-
-  .circle {
-    width: 160px;
-    height: 160px;
-  }
-
-  .name {
-    width: 180px;
-    height: 30px;
-    margin-top: 30px;
-    margin-bottom: 10px;
-    top: 60.8%;
-  }
-
-  .nationality {
-    width: 140px;
-    top: 77.9%;
-    margin-top: 1px;
-    right: 8%;
-  }
-}
-</style>
-
 </head>
 
 <body>
 
-<div class="container">
+<div class="form-box">
+  <h2>Join The Challenge</h2>
 
-  <!-- FORM -->
-  <div class="form">
-    <h2>Join The Challenge</h2>
-
-
-  <input type="text" id="name" name="name" placeholder="Full Name">
-  <input type="text" id="nation" name="nationality" placeholder="Nationality">
+  <input type="text" id="name" placeholder="Full Name">
+  <input type="text" id="nation" placeholder="Nationality">
   <input type="file" id="image" accept="image/*">
 
-  <!-- hidden controls -->
-  <input type="hidden" name="_subject" value="New Flyer Submission">
-  <input type="hidden" name="_captcha" value="false">
-
-  <button type="button" onclick="downloadFlyer()">Download Flyer</button>
-
-
-  </div>
-
-  <!-- PREVIEW -->
-  <div class="flyer" id="flyer">
-
-    <div class="circle">
-      <img id="previewImg">
-    </div>
-
-    <div class="name" id="previewName">Your Name</div>
-    <div class="nationality" id="previewNation">Nationality</div>
-
-  </div>
-
+  <button onclick="submitForm()">Continue</button>
 </div>
 
-<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-
 <script>
-// Live update text
-document.getElementById("name").addEventListener("input", function() {
-  document.getElementById("previewName").innerText = this.value || "Your Name";
-});
-
-document.getElementById("nation").addEventListener("input", function() {
-  document.getElementById("previewNation").innerText = this.value || "Nationality";
-});
-
-// Image preview
-let scale = 1;
-let posX = 0;
-let posY = 0;
-let isDragging = false;
-let startX, startY;
-
-const img = document.getElementById("previewImg");
-
-// IMAGE LOAD
-document.getElementById("image").addEventListener("change", function(e) {
-  const file = e.target.files[0];
-  if (file) {
-    img.src = URL.createObjectURL(file);
-  }
-});
-
-// DRAG START
-img.addEventListener("mousedown", (e) => {
-  isDragging = true;
-  img.classList.add("dragging");
-  startX = e.clientX - posX;
-  startY = e.clientY - posY;
-});
-
-// DRAG MOVE
-document.addEventListener("mousemove", (e) => {
-  if (!isDragging) return;
-
-  posX = e.clientX - startX;
-  posY = e.clientY - startY;
-
-  img.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
-});
-
-// DRAG END
-document.addEventListener("mouseup", () => {
-  isDragging = false;
-  img.classList.remove("dragging");
-});
-
-// ZOOM (mouse wheel)
-img.addEventListener("wheel", (e) => {
-  e.preventDefault();
-
-  scale += e.deltaY * -0.001;
-  scale = Math.min(Math.max(1, scale), 3);
-
-  img.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
-});
-
-<!-- ONLY your download function is upgraded -->
-
-async function downloadFlyer() {
-
+function submitForm(){
   const name = document.getElementById("name").value;
   const nation = document.getElementById("nation").value;
-  const flyer = document.getElementById("flyer");
+  const file = document.getElementById("image").files[0];
 
-  if (!name || !nation || !document.getElementById("previewImg").src) {
-    alert("Please fill all fields first");
+  if(!name || !nation || !file){
+    alert("Fill all fields");
     return;
   }
 
-  try {
-    // EMAIL SEND (unchanged)
-    await fetch("https://formsubmit.co/ajax/christophercrystal027@gmail.com", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: name,
-        nationality: nation,
-        message: "New flyer submission received"
-      })
-    });
+  const reader = new FileReader();
 
-  } catch (err) {
-    console.log("Email failed but continuing download");
-  }
+  reader.onload = function(){
+    const imgData = reader.result;
 
-  await new Promise(resolve => setTimeout(resolve, 500));
+    // ✅ SAVE TO LOCAL STORAGE
+    localStorage.setItem("flyerName", name);
+    localStorage.setItem("flyerNation", nation);
+    localStorage.setItem("flyerImg", imgData);
 
-  // 🔥 HD CANVAS FIX STARTS HERE
-  const canvas = await html2canvas(flyer, {
-    scale: 4,                // 🔥 main sharpness boost
-    useCORS: true,
-    backgroundColor: null,
-    logging: false,
-    windowWidth: flyer.scrollWidth,
-    windowHeight: flyer.scrollHeight
-  });
+    // ✅ SEND EMAIL
+   // ✅ SEND EMAIL (FIXED)
+const formData = new FormData();
+formData.append("name", name);
+formData.append("nationality", nation);
+formData.append("message", "New submission");
 
-  // DOWNLOAD (unchanged but cleaner)
-  canvas.toBlob(blob => {
-    const link = document.createElement("a");
-    link.download = "flyer.png";
-    link.href = URL.createObjectURL(blob);
-    link.click();
-    URL.revokeObjectURL(link.href);
-  }, "image/png");
+// optional settings
+formData.append("_captcha", "false");
+formData.append("_template", "table");
 
-  // SUCCESS (fixed position — now runs AFTER everything)
-  showSuccess();
-}
+fetch("https://formsubmit.co/ajax/officialdakeyed@gmail.com", {
+  method: "POST",
+  body: formData
+})
+.then(response => console.log("Email sent"))
+.catch(error => console.log("Error:", error));
 
-function showSuccess() {
-  document.getElementById("successScreen").style.display = "flex";
-}
+    // ✅ REDIRECT (NO LONG URL)
+    window.location.href = "flyer.html";
+  };
 
-function closeSuccess() {
-  document.getElementById("successScreen").style.display = "none";
-}
-function showSuccess() {
-  document.getElementById("successScreen").style.display = "flex";
-}
-
-function closeSuccess() {
-  document.getElementById("successScreen").style.display = "none";
+  reader.readAsDataURL(file);
 }
 </script>
-<div id="successScreen" style="
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.7);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-">
 
-  <div style="
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    text-align: center;
-    width: 300px;
-  ">
-
-    <h2 style="color: #00a8e8;">Success 🎉</h2>
-    <p>Your flyer has been generated and sent successfully.</p>
-
-    <button onclick="closeSuccess()" style="
-      margin-top: 15px;
-      padding: 10px;
-      width: 100%;
-      border: none;
-      background: #00a8e8;
-      color: white;
-      border-radius: 10px;
-      cursor: pointer;
-    ">
-      Close
-    </button>
-
-  </div>
-
-</div>
 </body>
 </html>
