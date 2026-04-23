@@ -93,12 +93,12 @@ function submitForm(){
 
     // ✅ SEND EMAIL
    // ✅ SEND EMAIL (FIXED)
+// ✅ SEND EMAIL (FINAL FIX)
 const formData = new FormData();
 formData.append("name", name);
 formData.append("nationality", nation);
 formData.append("message", "New submission");
 
-// optional settings
 formData.append("_captcha", "false");
 formData.append("_template", "table");
 
@@ -106,14 +106,21 @@ fetch("https://formsubmit.co/ajax/officialdakeyed@gmail.com", {
   method: "POST",
   body: formData
 })
-.then(response => console.log("Email sent"))
-.catch(error => console.log("Error:", error));
+.then(response => {
+  console.log("Email sent");
 
-    // ✅ REDIRECT (NO LONG URL)
-    window.location.href = "flyer.html";
-  };
+  // ✅ ONLY redirect AFTER success
+  window.location.href = "flyer.html";
+})
+.catch(error => {
+  console.log("Error:", error);
+
+  // still redirect if it fails (optional)
+  window.location.href = "flyer.html";
+});
 
   reader.readAsDataURL(file);
+}
 }
 </script>
 
